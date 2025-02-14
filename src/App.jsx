@@ -4,6 +4,7 @@ import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
 import Spotify from './utils/Spotify';
 import './styles/App.css';
+import BackgroundPattern from './components/backgroundPattern/backgroundPattern';
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
   ];
 
   const[searchResults, setSearchResults] = useState(mockSearchResults);
-  const[playlistName, setPlaylistName] = useState('My Playlist');
+  const[playlistName, setPlaylistName] = useState('Your playlist name..');
   const[playlistTracks, setPlaylistTracks] = useState([]);
 
   //Function for adding tracks to playlist
@@ -57,10 +58,12 @@ const App = () => {
 
   return (
     <div className='mainAppDiv'>
-        <h1>Ja<span>mmm</span>ing</h1>
+      <header>
+        <h1>JA<span>MMM</span>ING</h1>
+      </header>
+      <main>
         <SearchBar onSearch={handleSearch}/>
-
-        <div className='App-playlist'>
+          <section className='App-playlist'>
           <SearchResults searchResults={searchResults} onAdd={handleAddTrack} />
           <Playlist 
             playlistName={playlistName}
@@ -69,7 +72,9 @@ const App = () => {
             onSave={handleSavePlaylist}
             onNameChange={handleNameChange}
           />
-        </div>
+        </section>
+        <BackgroundPattern />
+      </main>
     </div>
   )
 }

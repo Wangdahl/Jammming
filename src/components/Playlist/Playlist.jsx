@@ -1,5 +1,4 @@
 import './Playlist.css';
-import {useState} from 'react';
 import Tracklist from '../TrackList/Tracklist';
 import PropTypes from 'prop-types';
 
@@ -17,7 +16,7 @@ const Playlist = ({playlistName, playlistTracks, onRemove, onNameChange, onSave}
 
     return(
         <div className='Playlist'>
-            <input value={playlistName} onChange={handleNameChange} />
+            <input className='playlistInput' value={playlistName} onChange={handleNameChange} />
             
             <Tracklist tracks={playlistTracks} onRemove={onRemove} isRemoval={true}/>
 

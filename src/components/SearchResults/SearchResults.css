@@ -1,0 +1,6 @@
+.SearchResults {
+    width: 400px;
+    max-width: 450px;
+    background-color: var(--primary-transparent);
+    margin: 1.5rem 1rem;
+}

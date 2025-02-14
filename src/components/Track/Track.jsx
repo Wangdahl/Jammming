@@ -14,12 +14,14 @@ const Track = ({ track, onAdd, onRemove, isRemoval}) => {
     return (        
         <div className='Track'>
             {/* Need to do check in how to get the pre-play / test listen thing here */}
-            <button><i className="fa-solid fa-play"></i></button>
+            <button className='prePlayBtn'><i className="fa-solid fa-play"></i></button>
             <div className='trackInfo'>
-                <h3>{track.name}</h3>
-                <p>{track.artist} | {track.album} </p>
+                <div className='innerTrackInfo'>
+                    <h3>{track.name}</h3>
+                    <p>{track.artist} | {track.album} </p>
+                </div>
                 {/* Adding button, either add or remove based on isRemoval */}
-                <button onClick={handleClick}>
+                <button onClick={handleClick} className='plusBtn'>
                     {isRemoval ? <i className="fa-solid fa-minus"></i> : <i className="fa-solid fa-plus"></i> }
                 </button>
             </div>

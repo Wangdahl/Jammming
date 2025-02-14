@@ -12,7 +12,7 @@ const SearchBar = ({onSearch}) => {
                 <input className='searchInput' type="text" placeholder='Song, album or artist'/>
             </div>
             <div>
-                <button onClick={onSearch} className='searchBtn'>Search</button>
+                <button onClick={onSearch} className='searchBtn'><i className="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     )

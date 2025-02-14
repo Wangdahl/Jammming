@@ -1,0 +1,33 @@
+
+
+
+.Playlist {
+    width: 400px;
+    background-color: var(--primary-transparent);
+    margin: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.playlistInput {
+    font-size: 1.4rem;
+    margin: 1.5rem 2.5rem 1rem;
+    padding-left: 5px;
+    border: none;
+    border-bottom: thin solid;
+    background-color: transparent;
+    color: var(--near-white-color);
+    font-weight: 550;
+}
+
+.Playlist-save {
+    justify-self: flex-end;
+    align-self: center;
+    margin: auto auto 1rem;
+    width: 150;
+    padding: 10px;
+    color: var(--near-white-color);
+    background-color: transparent;
+    border: solid thin var(--near-white-color);
+    border-radius: 20px;
+    cursor: pointer;
+}

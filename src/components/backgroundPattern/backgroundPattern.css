@@ -1,0 +1,353 @@
+
+  /* The container uses perspective to give depth to the cubes */
+.background-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    z-index: -1; /* sits behind your main content */
+    overflow: hidden;
+    background-color: var(--near-black-color);
+}
+
+  /* Common cube styles */
+.cube {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+  /* Each cube will use a CSS variable for its size */
+
+
+  /* Common styles for all cube faces */
+.cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Optional: a subtle border to accentuate edges */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* Position each face relative to the cube’s center.
+    We use calc(var(--cube-size) / 2) to push each face outwards. */
+.cube-face--front {
+    transform: rotateY(0deg) translateZ(calc(var(--cube-size) / 2));
+}
+.cube-face--back {
+    transform: rotateY(180deg) translateZ(calc(var(--cube-size) / 2));
+}
+.cube-face--right {
+    transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.cube-face--left {
+    transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.cube-face--top {
+    transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.cube-face--bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+}
+
+/* -------------------------
+Cube-specific styling
+(Sizes, positions, 3D transforms, and face colors)
+  ------------------------- */
+
+  /* Cube 1 */
+.cube1 {
+    --cube-size: 200px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 12%;
+    left: 15%;
+    transform: translateZ(100px) rotateX(20deg) rotateZ(15deg);
+    z-index: 6;
+    animation: rotate1 20s infinite linear;
+}
+
+@keyframes rotate1 {
+    0% {
+        transform: rotate3d(1, 1, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 0, 180deg);
+    }
+    100% {
+        transform: rotate3d(1, 1, 0, 360deg);
+    }
+}
+
+.cube1 .cube-face { background-color: var(--primary-color); }
+
+  /* Cube 2 */
+.cube2 {
+    --cube-size: 135px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 15%;
+    right: 10%;
+    transform: translateZ(60px) rotateX(-25deg) rotateZ(-20deg);
+    z-index: 5;
+    animation: rotate2 15s infinite linear;
+}
+
+@keyframes rotate2 {
+    0% {
+        transform: rotate3d(1, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(1, 0, 1, 360deg);
+    }
+}
+.cube2 .cube-face { background-color: var(--near-white-color); }
+
+  /* Cube 3 */
+.cube3 {
+    --cube-size: 100px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 25%;
+    left: 33%;
+    transform: translateZ(-50px) rotateX(30deg) rotateZ(10deg);
+    z-index: 2;
+    animation: rotate2 10s infinite linear;
+}
+
+@keyframes rotate3 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 0, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube3 .cube-face { background-color: var(--dark-shade); }
+
+  /* Cube 4 */
+.cube4 {
+    --cube-size: 280px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    bottom: 18%;
+    left: 10%;
+    transform: translateZ(90px) rotateX(27deg) rotateZ(-10deg);
+    z-index: 6;
+    animation: rotate4 30s infinite linear;
+}
+
+@keyframes rotate4 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 0, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(q, 0, 1, 360deg);
+    }
+}
+
+.cube4 .cube-face { background-color: var(--darker-shade); }
+
+  /* Cube 5 */
+.cube5 {
+    --cube-size: 120px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 5%;
+    right: 44%;
+    transform: translateZ(-100px) rotateX(35deg) rotateZ(25deg);
+    z-index: 1;
+    animation: rotate5 13s infinite linear;
+
+}
+@keyframes rotate5 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 0, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(1, 0, 1, 360deg);
+    }
+}
+.cube5 .cube-face { background-color: var(--darker-shade); }
+
+  /* Cube 6 */
+.cube6 {
+    --cube-size: 165px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    bottom: 35%;
+    right: 10%;
+    transform: translateZ(70px) rotateX(-120deg) rotateZ(75deg);
+    z-index: 5;
+    animation: rotate6 16s infinite linear;
+}
+@keyframes rotate6 {
+    0% {
+        transform: rotate3d(1, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 0, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube6 .cube-face { background-color: var(--dark-shade); }
+
+  /* Cube 7 */
+.cube7 {
+    --cube-size: 50px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 40%;
+    left: 40%;
+    transform: translateZ(-70px) rotateX(30deg) rotateZ(30deg);
+    z-index: 1;
+    animation: rotate7 23s infinite linear;
+}
+@keyframes rotate7 {
+    0% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 0, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube7 .cube-face { background-color: var(--near-white-color); }
+
+  /* Cube 8 */
+.cube8 {
+    --cube-size: 240px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 45%;
+    left: 53%;
+    transform: translateZ(150px) rotateX(75deg) rotateZ(-25deg);
+    z-index: 8;
+    animation: rotate8 28s infinite linear;
+}
+@keyframes rotate8 {
+    0% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube8 .cube-face { background-color: var(--near-white-color); }
+
+ /* Cube 9 */
+.cube9 {
+    --cube-size: 140px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    bottom: 32%;
+    left: 30%;
+    transform: translateZ(40px) rotateX(20deg) rotateZ(20deg);
+    z-index: 4;
+    animation: rotate9 12s infinite linear;
+}
+@keyframes rotate9 {
+    0% {
+        transform: rotate3d(1, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube9 .cube-face { background-color: var(--light-shade); }
+
+  /* Cube 10 */
+.cube10 {
+    --cube-size: 120px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    bottom: 5%;
+    right: 15%;
+    transform: translateZ(-80px) rotateX(35deg) rotateZ(-15deg);
+    z-index: 1;
+    animation: rotate10 17s infinite linear;
+}
+@keyframes rotate10 {
+    0% {
+        transform: rotate3d(1, 0, 1, 0deg);
+    }
+    50% {
+        transform: rotate3d(0, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube10 .cube-face { background-color: var(--light-shade); }
+
+  /* Cube 11 */
+.cube11 {
+    --cube-size: 215px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    top: 10%;
+    left: 60%;
+    transform: translateZ(120px) rotateX(25deg) rotateZ(45deg);
+    z-index: 7;
+    animation: rotate10 23s infinite linear;
+}
+@keyframes rotate10 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(0, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+.cube11 .cube-face { background-color: var(--primary-color); }
+
+  /* Cube 12 */
+.cube12 {
+    --cube-size: 170px;
+    width: var(--cube-size);
+    height: var(--cube-size);
+    bottom: 15%;
+    left: 38%;
+    transform: translateZ(60px) rotateX(125deg) rotateZ(-50deg);
+    z-index: 4;
+    animation: rotate10 19s infinite linear;
+}
+@keyframes rotate10 {
+    0% {
+        transform: rotate3d(1, 0, 0, 0deg);
+    }
+    50% {
+        transform: rotate3d(0, 1, 1, 180deg);
+    }
+    100% {
+        transform: rotate3d(1, 0, 1, 360deg);
+    }
+}
+.cube12 .cube-face { background-color: var(--primary-color); }
