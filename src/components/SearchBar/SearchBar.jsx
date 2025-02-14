@@ -17,6 +17,11 @@ const SearchBar = ({onSearch}) => {
                 className='searchInput' 
                 value={term}
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        onSearch(term);
+                    }
+                }}
                 type="text" 
                 placeholder='Song, album or artist'/>
             </div>

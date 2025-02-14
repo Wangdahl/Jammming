@@ -34,10 +34,7 @@ const App = () => {
   const handleSavePlaylist = () => {
     //Getting URI from each track in playlist
     const trackURIs = playlistTracks.map(track => track.uri);
-    
-    //Fixing full functionality later with API
-    console.log("Track URIs to save:", trackURIs);
-
+    Spotify.savePlaylist(playlistName, trackURIs);
     // Can clear playlist with setPlaylistTracks([]); MAYBE GET SEPERATE BUTTON FOR THIS? Extra functionality NEW PLAYLIST
   };
 

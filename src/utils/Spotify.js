@@ -53,4 +53,34 @@ const search = async (term) => {
     }));
 }
 
-export default {getAccessToken, search};
+//Function for saving the playlist to spotify
+const savePlaylist = async (playlistName, trackURIs) => {
+    if(!playlistName || !trackURIs.length) {
+        return;
+    }
+    const accessToken = getAccessToken();
+    const headers = {Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json'};
+    let userId;
+
+    //Get users ID
+    const response = await fetch('https://api.spotify.com/v1/me', {headers});
+    const userData = await response.json();
+    userId = userData.id;
+
+    //Create the new playlist
+    const createPlaylistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {headers, 
+        method: 'POST',
+        body: JSON.stringify({name: playlistName, public: true})
+    });
+    const playlistData = await createPlaylistResponse.json();
+    const playlistId = playlistData.id;
+
+    // Add the tracks to new list
+    await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({uris: trackURIs})
+    });
+};
+
+export default {getAccessToken, search, savePlaylist};
