@@ -1,18 +1,31 @@
 import {useState} from 'react';
-import './SearchBar.css'
+import './SearchBar.css';
 import PropTypes from 'prop-types';
 
 
 const SearchBar = ({onSearch}) => {
+    const [term, setTerm] = useState('');
 
+    const handleChange = (e) => {
+        setTerm(e.target.value);
+    }
 
     return (
         <div className='searchBar'>
             <div className='searchField'>
-                <input className='searchInput' type="text" placeholder='Song, album or artist'/>
+                <input 
+                className='searchInput' 
+                value={term}
+                onChange={handleChange}
+                type="text" 
+                placeholder='Song, album or artist'/>
             </div>
             <div>
-                <button onClick={onSearch} className='searchBtn'><i className="fa-solid fa-magnifying-glass"></i></button>
+                <button 
+                onClick={() => onSearch(term)} 
+                className='searchBtn'>
+                    <i className="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
         </div>
     )

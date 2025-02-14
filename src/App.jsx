@@ -8,14 +8,7 @@ import BackgroundPattern from './components/backgroundPattern/backgroundPattern'
 
 const App = () => {
 
-  // Array for creating a mock
-  const mockSearchResults = [
-    { id: 1, name: "Song One", artist: "Artist A", album: "Album X", uri: "spotify:track:1" },
-    { id: 2, name: "Song Two", artist: "Blur", album: "Album Y", uri: "spotify:track:2" },
-    { id: 3, name: "Song Three", artist: "Artist C", album: "Album Z", uri: "spotify:track:3" }
-  ];
-
-  const[searchResults, setSearchResults] = useState(mockSearchResults);
+  const[searchResults, setSearchResults] = useState([]);
   const[playlistName, setPlaylistName] = useState('Your playlist name..');
   const[playlistTracks, setPlaylistTracks] = useState([]);
 
@@ -49,8 +42,7 @@ const App = () => {
   };
 
   //function that handles search request
-  const handleSearch = async () => {
-    const term = prompt('Enter a search term:');
+  const handleSearch = async (term) => {
     const results = await Spotify.search(term);
     setSearchResults(results);
   }

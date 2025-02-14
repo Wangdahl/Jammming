@@ -1,6 +1,6 @@
 
 
-const clientID = 'YOUR_SPOTIFY_CLIENT_ID';
+const clientID = '';
 const redirectURI = 'http://localhost:5173/'; //Change if deploying live
 let accessToken;
 
@@ -11,8 +11,8 @@ const getAccessToken = () => {
     }
 
     //Check for token in URL parameters
-    const tokenMatch = window.location.href.match(/access_token=([^&]*)/); //Turn theses into strings???
-    const expiresMatch = window.location.href.match(/expires_in=([^&]*)/); //Turn theses into strings???
+    const tokenMatch = window.location.href.match(/access_token=([^&]*)/);
+    const expiresMatch = window.location.href.match(/expires_in=([^&]*)/);
 
     if(tokenMatch && expiresMatch) {
         accessToken = tokenMatch[1];
@@ -21,7 +21,7 @@ const getAccessToken = () => {
         //Clearing token after expiration date
         window.setTimeout(() => accessToken = '', expiresIn * 1000);
         //Removing token from URL to avoid reuse
-        window.history.pushState.apply('Access Token', null, '/');
+        window.history.pushState({}, 'Access Token', '/');
         return accessToken;
     } else {
         //If no token is found, redirect to spotify authorization
@@ -47,7 +47,7 @@ const search = async (term) => {
     return jsonResponse.tracks.items.map(track => ({
         id: track.id,
         name: track.name,
-        artist: track.artist[0].name,
+        artist: track.artists[0].name,
         album: track.album.name,
         uri: track.uri
     }));
