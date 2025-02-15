@@ -24,10 +24,6 @@ const getAccessToken = () => {
             window.history.pushState({}, 'Access Token', '/');
             return accessToken;
         } else {
-            //If no token is found, redirect to spotify authorization
-            // Removing for testing const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
-            // window.location = accessUrl;
-
             return null;
         }
     } catch(error) {

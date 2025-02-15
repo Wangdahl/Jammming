@@ -4,31 +4,65 @@ import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
 import Spotify from './utils/Spotify';
 import BackgroundPattern from './components/backgroundPattern/backgroundPattern';
-import LoadProfileOverlay from './components/LoadProfileOverlay.jsx/LoadProfileOverlay';
+import LoadProfileOverlay from './components/LoadProfileOverlay/LoadProfileOverlay';
 import './styles/App.css';
 
 const App = () => {
 
   const[searchResults, setSearchResults] = useState([]);
-  const[playlistName, setPlaylistName] = useState('Your playlist name..');
+  const[playlistName, setPlaylistName] = useState(`Your jammm..`);
   const[playlistTracks, setPlaylistTracks] = useState([]);
   const[isProfileLoaded, setIsProfileLoaded] = useState(false);
   const[token, setToken] = useState(null);
+  const[displayName, setDisplayName] = useState('')
 
   //Check for token
   useEffect(() => {
     const t = Spotify.getAccessToken();
     if(t) {
       setToken(t);
-      setIsProfileLoaded(true);
+      
+      fetch('https://api.spotify.com/v1/me', {
+        headers: { Authorization: `Bearer ${t}` }
+      }).then(response => {
+        if(!response.ok) {
+          throw new Error('Faled to fetch user data')
+        } 
+        return response.json();
+      }).then(userData => {
+        setDisplayName(userData.display_name);
+      }).catch(error => 
+        console.error('Error fetching data: ', error)
+      );
+      setIsProfileLoaded(true)
     }
   }, []);
+  //Personal playlist name
+  useEffect(() => {
+    if(displayName) {
+      const capitalizedName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+      setPlaylistName(`${capitalizedName}'s jammm..`);
+    }
+  }, [displayName]);
 
   //Function for loading in profile manually 
-  const loadProfile = () => {
+  const loadProfile = async () => {
     const t = Spotify.getAccessToken();
     if (t) {
       setToken(t);
+      try {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+          headers: { Authorization: `Bearer ${t}`}
+        });
+        if(response.ok) {
+          const userData = await response.json();
+          setDisplayName(userData.display_name);
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data', error);
+      }
       setIsProfileLoaded(true);
     } else {
       window.location = Spotify.getAuthUrl();
@@ -69,7 +103,7 @@ const App = () => {
   };
   const clearPlaylist = () => {
     setPlaylistTracks([]);
-    setPlaylistName('New playlist..')
+    setPlaylistName(`${displayName}'s jamm..`)
   };
 
   //function that handles search request
