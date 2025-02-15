@@ -109,8 +109,10 @@ const savePlaylist = async (playlistName, trackURIs) => {
         if(!addTrackResponse.ok) {
             throw new ErrorEvent('Failed to add tracks to playlist.');
         }
+        return playlistId;
     } catch (error) {
         console.error('Error saving playlist: ', error);
+        return null;
     }
 }
 

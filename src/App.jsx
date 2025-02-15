@@ -58,7 +58,11 @@ const App = () => {
     try {
       //Getting URI from each track in playlist
       const trackURIs = playlistTracks.map(track => track.uri);
-      await Spotify.savePlaylist(playlistName, trackURIs);
+      const playlistId = await Spotify.savePlaylist(playlistName, trackURIs);
+
+      if(playlistId) {
+        window.location.href = `spotify:playlist:${playlistId}`;
+      }
     } catch (error) {
       console.error('Error in handleSavePlaylist: ', error)
     }
