@@ -31,7 +31,6 @@
     background-color: transparent;
     border: none;
     color: var(--near-white-color);
-    padding: 0 1rem;
     cursor: pointer;
 }
 .plusBtn i {

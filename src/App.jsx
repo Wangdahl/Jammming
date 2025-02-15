@@ -3,8 +3,8 @@ import SearchBar from './components/SearchBar/SearchBar';
 import SearchResults from './components/SearchResults/SearchResults';
 import Playlist from './components/Playlist/Playlist';
 import Spotify from './utils/Spotify';
-import './styles/App.css';
 import BackgroundPattern from './components/backgroundPattern/backgroundPattern';
+import './styles/App.css';
 
 const App = () => {
 
@@ -28,21 +28,33 @@ const App = () => {
   //Function for changing playlist name
   const handleNameChange = (newName) => {
     setPlaylistName(newName);
-;  }
+  }
 
   //function for saving playlists to spotify
-  const handleSavePlaylist = () => {
-    //Getting URI from each track in playlist
-    const trackURIs = playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(playlistName, trackURIs);
-    // Can clear playlist with setPlaylistTracks([]); MAYBE GET SEPERATE BUTTON FOR THIS? Extra functionality NEW PLAYLIST
+  const handleSavePlaylist = async () => {
+    try {
+      //Getting URI from each track in playlist
+      const trackURIs = playlistTracks.map(track => track.uri);
+      await Spotify.savePlaylist(playlistName, trackURIs);
+    } catch (error) {
+      console.error('Error in handleSavePlaylist: ', error)
+    }
+  };
+  const clearPlaylist = () => {
+    setPlaylistTracks([]);
+    setPlaylistName('New playlist..')
   };
 
   //function that handles search request
   const handleSearch = async (term) => {
-    const results = await Spotify.search(term);
-    setSearchResults(results);
-  }
+    try {
+      const results = await Spotify.search(term);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error in handleSearch: ', error);
+    }
+
+  };
 
 
   return (
@@ -60,6 +72,7 @@ const App = () => {
             onRemove={handleRemoveTrack}
             onSave={handleSavePlaylist}
             onNameChange={handleNameChange}
+            onClear={clearPlaylist}
           />
         </section>
         <BackgroundPattern />

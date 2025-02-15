@@ -1,0 +1,40 @@
+
+/* Full-screen overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+  /* Content styling */
+.overlay-content {
+    text-align: center;
+    color: #fff;
+}
+
+.overlay-content h2 {
+    margin-bottom: 1rem;
+}
+
+.overlay-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.overlay-content button {
+    margin: 2rem 0.5rem;
+    width: 200;
+    padding: 10px 15.69px;
+    color: var(--near-white-color);
+    background-color: transparent;
+    border: solid thin var(--near-white-color);
+    border-radius: 20px;
+    cursor: pointer;
+}

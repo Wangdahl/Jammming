@@ -14,6 +14,7 @@ const SearchBar = ({onSearch}) => {
         <div className='searchBar'>
             <div className='searchField'>
                 <input 
+                id='searchInput'
                 className='searchInput' 
                 value={term}
                 onChange={handleChange}
