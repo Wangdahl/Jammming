@@ -6,7 +6,7 @@ const LoadProfileOverlay = ({ onLoadProfile }) => {
     <div className="overlay">
         <div className="overlay-content">
         <h2>Welcome to Jammming</h2>
-        <p>Please connect your Spotify profile to continue</p>
+        <p>Load your Spotify profile to get started!</p>
         <button onClick={onLoadProfile}>Load Profile</button>
         </div>
     </div>

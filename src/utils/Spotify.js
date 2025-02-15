@@ -25,8 +25,8 @@ const getAccessToken = () => {
             return accessToken;
         } else {
             //If no token is found, redirect to spotify authorization
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
-            window.location = accessUrl;
+            // Removing for testing const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
+            // window.location = accessUrl;
 
             return null;
         }
