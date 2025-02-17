@@ -76,6 +76,7 @@ button:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease;
 }
+
 button:active {
   transform: scale(0.9);
 }
@@ -83,3 +84,4 @@ button:active {
 button:hover i {
   transform: scale(1.1);
 }
+

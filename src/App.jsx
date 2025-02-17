@@ -103,7 +103,8 @@ const App = () => {
   };
   const clearPlaylist = () => {
     setPlaylistTracks([]);
-    setPlaylistName(`${displayName}'s jamm..`)
+    const capitalizedName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+    setPlaylistName(`${capitalizedName}'s jamm..`)
   };
 
   //function that handles search request
