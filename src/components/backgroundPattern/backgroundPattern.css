@@ -351,3 +351,11 @@ Cube-specific styling
     }
 }
 .cube12 .cube-face { background-color: var(--primary-color); }
+
+
+/* Mobile adaptations */
+@media (max-width: 480px) {
+    .cube11-wrapper, .cube8-wrapper, .cube4-wrapper{
+        display: none;
+    }
+}
