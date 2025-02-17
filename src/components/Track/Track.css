@@ -37,3 +37,10 @@
 .plusBtn i {
     font-size: 1.1rem;
 }
+
+/* Mobile adaptation */
+@media (max-width: 320px){
+    .prePlayBtn {
+        display: none !important;
+    }
+}

@@ -32,3 +32,13 @@
     border-radius: 20px;
     cursor: pointer;
 }
+/* Mobile adaptation */
+@media (max-width: 480px) {
+    .searchBar {
+        max-width: 95vw;
+        box-sizing: border-box;
+    }
+    .searchInput {
+        width: 150px;
+    }
+}

@@ -4,3 +4,20 @@
     background-color: var(--primary-transparent);
     margin: 1.5rem 1rem;
 }
+/* Mobile adaptation */
+@media (max-width: 1024px) {
+    .SearchResults {
+        height: 100%;
+        margin-top: 0;
+    }
+}
+@media (max-width: 480px) {
+    .SearchResults {
+        height: 100%;
+        margin-top: 0;
+        max-width: 95vw;
+        box-sizing: border-box;
+        margin: 0;
+        overflow: none !important;
+    }
+}

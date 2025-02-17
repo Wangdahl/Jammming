@@ -5,6 +5,7 @@ import Playlist from './components/Playlist/Playlist';
 import Spotify from './utils/Spotify';
 import BackgroundPattern from './components/backgroundPattern/backgroundPattern';
 import LoadProfileOverlay from './components/LoadProfileOverlay/LoadProfileOverlay';
+import useWindowWidth from './components/useWindowWidth/useWindowWidth';
 import './styles/App.css';
 
 const App = () => {
@@ -14,7 +15,11 @@ const App = () => {
   const[playlistTracks, setPlaylistTracks] = useState([]);
   const[isProfileLoaded, setIsProfileLoaded] = useState(false);
   const[token, setToken] = useState(null);
-  const[displayName, setDisplayName] = useState('')
+  const[displayName, setDisplayName] = useState('');
+  const[activeTab, setActiveTab] = useState('search');
+
+  const windowWidth = useWindowWidth();
+
 
   //Check for token
   useEffect(() => {
@@ -118,7 +123,63 @@ const App = () => {
 
   };
 
+  //Mobile layour: renders tabs for results / playlist
+  const renderMobileContent = () => (
+    <>
+      <SearchBar onSearch={handleSearch} />
+      <section className='App-playlist'>
+        <div className='tab-header'>
+          <button 
+            id='resultTabBtn'
+            className={activeTab === 'search' ? 'active' : ''}
+            onClick={() => setActiveTab('search')}
+            >Search results
+          </button>
+          <button
+            id='playlistTabBtn'
+            className={activeTab === 'playlist' ? 'active' : ''}
+            onClick={() => setActiveTab('playlist')}
+            >Playlist
+          </button>
+        </div>
+        {activeTab === 'search' ? (
+          <>
+          <SearchResults searchResults={searchResults} onAdd={handleAddTrack} />
+          </>
+        ) : (
+          <Playlist
+            playlistName={playlistName}
+            playlistTracks={playlistTracks}
+            onRemove={handleRemoveTrack}
+            onSave={handleSavePlaylist}
+            onNameChange={handleNameChange}
+            onClear={clearPlaylist}
+        />
+        )}
+      </section>
+      <BackgroundPattern />
+    </>
+  );
 
+  //Desktop layout: renders results and playlist side-by-side
+  const renderDesktopContent = () => (
+    <>
+      <SearchBar onSearch={handleSearch}/>
+      <section className='App-playlist'>
+        <SearchResults searchResults={searchResults} onAdd={handleAddTrack} />
+        <Playlist 
+          playlistName={playlistName}
+          playlistTracks={playlistTracks}
+          onRemove={handleRemoveTrack}
+          onSave={handleSavePlaylist}
+          onNameChange={handleNameChange}
+          onClear={clearPlaylist}
+        />
+      </section>
+      <BackgroundPattern />
+    </>
+  );
+  
   return (
     <div className='mainAppDiv'>
       {/* Render overlay only if profile is not loaded */}
@@ -127,19 +188,7 @@ const App = () => {
         <h1>JA<span>MMM</span>ING</h1>
       </header>
       <main>
-        <SearchBar onSearch={handleSearch}/>
-          <section className='App-playlist'>
-          <SearchResults searchResults={searchResults} onAdd={handleAddTrack} />
-          <Playlist 
-            playlistName={playlistName}
-            playlistTracks={playlistTracks}
-            onRemove={handleRemoveTrack}
-            onSave={handleSavePlaylist}
-            onNameChange={handleNameChange}
-            onClear={clearPlaylist}
-          />
-        </section>
-        <BackgroundPattern />
+        {windowWidth < 1025 ? renderMobileContent() : renderDesktopContent()}
       </main>
     </div>
   )

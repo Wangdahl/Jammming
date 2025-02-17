@@ -17,3 +17,40 @@
     align-self: stretch;
     background-color: transparent;
 }
+
+/* Mobile adaptation */
+@media (max-width: 1024px) {
+    .App-playlist {
+        flex-direction: column;
+
+    }
+    .tab-header {
+        padding: 0.5rem 1rem 0 1rem;
+    }
+    .tab-header button {
+        width: 120px;
+        background-color: RGBA(41, 17, 0, 0.7);
+        border: none;
+        color: var(--near-white-color);
+        padding: 10px;
+        cursor: pointer;
+    }
+    .tab-header button.active {
+        border: none;
+        background-color: var(--primary-transparent);
+    }
+    .tab-header button:hover {
+        transform: none;
+    }
+}
+@media (max-width: 480px) {
+    .tab-header {
+        padding: 0;
+    }
+}
+@media (max-width: 320px) {
+    .tab-header button {
+        width: 50%;
+        padding: 5px 8px;
+    }
+}

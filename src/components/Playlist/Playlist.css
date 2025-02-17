@@ -1,12 +1,17 @@
 
-
-
 .Playlist {
     width: 400px;
     background-color: var(--primary-transparent);
     margin: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
+}
+/* Mobile adaptation */
+@media (max-width: 1024px) {
+    .Playlist {
+        height: 100%;
+        margin-top: 0;
+    }
 }
 .playlistInput {
     font-size: 1.4rem;
