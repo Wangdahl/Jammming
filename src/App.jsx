@@ -78,10 +78,10 @@ const App = () => {
   const handleAddTrack = (track) => {
     //check if track is already in playlist
     if(playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
-       // MIGHT WANT TO ADD A WARNING OR SOMETHING? CHECK IF WANT TO ADD SONG AGAIN? EXTRA FUNC LATER MBY
       return;
     };
     setPlaylistTracks(prevTracks => [...prevTracks, track]);
+    setSearchResults(prevResults => prevResults.filter(t => t.id !== track.id));
   };
   //Function for removing track from playlist
   const handleRemoveTrack = (track) => {
