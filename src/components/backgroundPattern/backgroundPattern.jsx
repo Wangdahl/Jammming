@@ -1,4 +1,4 @@
-import './BackgroundPattern.css';
+import './backgroundPattern.css';
 
 const BackgroundPattern = () => {
   return (
