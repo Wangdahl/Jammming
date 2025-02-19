@@ -1,7 +1,7 @@
 
 
-const clientID = '';
-const redirectURI = 'http://localhost:5173/'; //Change if deploying live
+const clientID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const redirectURI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;  //Change if deploying live
 let accessToken;
 
 // Function to extract access token from the URL
