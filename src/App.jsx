@@ -192,7 +192,7 @@ const App = () => {
       </main>
       <footer>
       <p>Powered by</p>
-      <img src="/src/assets/spotify-logo.png" alt="" />
+      <img src="/src/assets/spotify-logo.png" alt="Spotify logo" />
       </footer>
     </div>
   )
