@@ -358,4 +358,7 @@ Cube-specific styling
     .cube11-wrapper, .cube8-wrapper, .cube4-wrapper{
         display: none;
     }
+    .cube2 .cube-face {
+        background-color: var(--dark-shade);
+    }
 }

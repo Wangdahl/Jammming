@@ -9,6 +9,9 @@ const LoadProfileOverlay = ({ onLoadProfile }) => {
             <h2>Welcome to Jammming</h2>
             <p>Load your Spotify profile to get started!</p>
             <button onClick={onLoadProfile}>Load Profile</button>
+            <p className='test-login'>Try authenticating with:</p>
+            <p className='test-login'>Mail - test.jamming@gmail.com</p>
+            <p className='test-login'>Password - test-jamming!</p>
             </div>
         </div>
     </div>

@@ -190,6 +190,10 @@ const App = () => {
       <main>
         {windowWidth < 1025 ? renderMobileContent() : renderDesktopContent()}
       </main>
+      <footer>
+      <p>Powered by</p>
+      <img src="/src/assets/spotify-logo.png" alt="" />
+      </footer>
     </div>
   )
 }

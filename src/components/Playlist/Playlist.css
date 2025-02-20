@@ -2,7 +2,7 @@
 .Playlist {
     width: 400px;
     background-color: var(--primary-transparent);
-    margin: 1.5rem 1rem;
+    margin: 1.5rem 1rem 0;
     display: flex;
     flex-direction: column;
 }

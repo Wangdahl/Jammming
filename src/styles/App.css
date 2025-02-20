@@ -47,6 +47,9 @@
     .tab-header {
         padding: 0;
     }
+    header img, header p {
+        display: none;
+    }
 }
 @media (max-width: 320px) {
     .tab-header button {
